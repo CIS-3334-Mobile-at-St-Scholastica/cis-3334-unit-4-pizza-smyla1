@@ -20,16 +20,26 @@ public class MainActivity extends AppCompatActivity implements updateViewInterfa
     TextView txtStatus;
     TextView txtPizzasOrdered;
     Spinner spinnerToppings;
+    PizzaOrderInterface  pizzaOrderSystem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        pizzaOrderSystem = new PizzaOrder(this);
+
         // Set up our radio buttons
         rbSmall = (RadioButton) findViewById(R.id.radioButtonSmall);
         rbMedium = (RadioButton) findViewById(R.id.radioButtonMedium);
         rbLarge = (RadioButton) findViewById(R.id.radioButtonLarge);
+
+        // review
+        rbSmall.append("-- price : $ " + pizzaOrderSystem.getPrice(Pizza.pizzaSize.SMALL));
+        rbMedium.append("-- price : $ " + pizzaOrderSystem.getPrice(Pizza.pizzaSize.MEDIUM));
+        rbLarge.append("-- price : $ " + pizzaOrderSystem.getPrice(Pizza.pizzaSize.LARGE));
+
+
 
         // Set up the Check Boxes
         chkbxCheese = (CheckBox) findViewById(R.id.checkBoxCheese);
